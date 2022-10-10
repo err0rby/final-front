@@ -39,7 +39,7 @@ const Header = React.memo(() => {
                 DEPARTMENTS
                 <div className={styled.dropContent}>
                 <div onClick={() => {navigate('/alphabet')}}>View all Departments</div>
-                <div>Specialists Directory</div>
+                <div>Special Directory</div>
                 <div>Private Art Collections</div>
                 <div>Corporate Art Collection</div>
                 </div>

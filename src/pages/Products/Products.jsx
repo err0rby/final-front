@@ -1,17 +1,15 @@
 import React, {  useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Vortex } from "react-loader-spinner";
-
 import { fetchProduct } from "../../features/productSlice";
 import { fetchCategory } from "../../features/categorySlice";
-import CardProduct from "./CardProduct";
 import styles from "./products.module.css";
 import Basket from "./img/Basket.png";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import CardProduct from "../../components/CardProduct/CardProduct";
 
 const Products = React.memo(() => {
   const { id } = useParams();
