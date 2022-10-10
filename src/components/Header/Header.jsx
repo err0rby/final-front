@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Auth from '../Auth/Auth';
 import  styled from '../Header/header.module.css'
 import Login from '../Login/Login';
