@@ -32,6 +32,22 @@ export const patchProd = createAsyncThunk('patch/product', async ({ id, priceSta
   }
 })
 
+export const patchUser = createAsyncThunk('patch/users', async ({ id, bet }, thunkAPI) => {
+  try {
+    const res = await fetch(`http://localhost:3030/Product/arr/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({ bet: bet })
+    });
+    const data = await res.json();
+    return { id, data };
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -46,6 +62,14 @@ const productSlice = createSlice({
         state.product.map((item) => {
           if (item._id === action.payload.id) {
             return item.priceStart = action.payload.priceStart;
+          }
+          return item;
+        })
+      })
+      .addCase(patchUser.fulfilled, (state, action) => {
+        state.product.map((item) => {
+          if (item._id === action.payload.id) {
+            item.bet = action.payload.data.bet;
           }
           return item;
         })

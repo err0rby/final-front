@@ -8,6 +8,7 @@
 
 .oneDis {
     display: flex;
+    width: 90%;
     justify-content: center;
 }
 
@@ -44,4 +45,19 @@
 
 .inputer {
     margin-top: 20px;
+}
+
+.inputer button {
+    background-color: transparent;
+    padding: 5px 5px;
+    border: none;
+    margin-left: 5px;
+    box-sizing: border-box;
+}
+
+.inputer input {
+    box-sizing: border-box;
+    padding: 5px 5px;
+    border-radius: 4px;
+    border: 1px solid black;
 }
