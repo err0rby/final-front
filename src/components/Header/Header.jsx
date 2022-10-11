@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Auth from '../Auth/Auth';
 import  styled from '../Header/header.module.css'
 import Login from '../Login/Login';
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 const Header = React.memo(() => {
 
     const navigate = useNavigate()
@@ -30,8 +31,8 @@ const Header = React.memo(() => {
                 AUCTIONS
                 <div className={styled.dropContent}>
                 <div onClick={()=> {navigate('/')}}>Lyon & Turnbull </div>
-                <div >Selling at Auction</div>
-                <div >Buying at Auction</div>
+                <div onClick={()=>{window.scrollTo(0, 1200)}}>Selling at Auction</div>
+                <div onClick={()=>{window.scrollTo(0, 1200)}}>Buying at Auction</div>
                 <div >Specialist Directory</div>
                 <div onClick={() => {navigate('/products')}}>Forthcoming Auctions</div>
                 </div>
