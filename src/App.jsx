@@ -6,6 +6,7 @@ import OneAuction from "./pages/OneAuction/OneAuction";
 import Products from "./pages/Products/Products";
 import Alphabet from "./pages/Alphabet/Alphabet";
 import UserProfile from "./pages/userProfile/userProfile";
+import About from "./pages/About/About";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/alphabet" element={<Alphabet />} />
         <Route path="/alphabet/:id" element={<OneAlphabetPage />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );
