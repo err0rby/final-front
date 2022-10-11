@@ -6,13 +6,18 @@ import { fetchProduct } from "../../features/productSlice";
 import { fetchCategory } from "../../features/categorySlice";
 import styles from "./products.module.css";
 import Basket from "./img/Basket.png";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import CardProduct from "../../components/CardProduct/CardProduct";
 
 const Products = React.memo(() => {
   const { id } = useParams();
+  
+  const pathName = useLocation();
+  const path = pathName.pathname;
+
+
 
   const loading = useSelector((state) => state.product.loading);
   const products = useSelector((state) =>
@@ -51,7 +56,7 @@ const Products = React.memo(() => {
           <div className={styles.things_head_ul}>
             <ul>
               <Link to={`/products`}>
-                <li>All</li>
+                <li className={path === '/products' ? styles.linOn : styles.lin}>All</li>
               </Link>
               {category.map((item, index) => {
                 return (

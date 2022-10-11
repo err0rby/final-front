@@ -13,15 +13,15 @@ const Timer = React.memo(({ dateNow, setDateNow, setTimerStart, item, setActiveW
     const timeRightNow = Number(dateNow.substring(12, 17).split(":").join("")) // реальное время
     const auctionStart = item.auctionStart.split(',')[1] // начало аукциона
 
-    // console.log(timeRightNow, 'реальное время')
-    // console.log(auctionStart, 'начало аукциона')
-    // console.log(item.auctionEnd, 'конец аукциона')
+    console.log(timeRightNow, 'реальное время')
+    console.log(auctionStart, 'начало аукциона')
+    console.log(item.auctionEnd, 'конец аукциона')
 
 
     const { seconds, minutes, hours, days, start, isRunning } = useTimer({
       expiryTimestamp,
       onExpire: () => {
-        if(setActiveWinner) {
+        if(setActiveWinner && item.bet) {
           dispatch(addProductForWinnerUser({id: item.bet._id, productId: item._id}))
           setActiveWinner(true)
         }
