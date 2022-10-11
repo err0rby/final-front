@@ -41,9 +41,9 @@ const Main = React.memo(() => {
                     </div>
                     <div className={styles.thing_card_btn1}>
                       {item.private === true ? (
-                        <button className={styles.thing_card_private}>Private auction</button>
+                        <Link to={`/products`}><button className={styles.thing_card_private}>Private auction</button></Link>
                       ) : (
-                        <Link to={`/oneAuction/${item._id}`}><button className={styles.thing_card_noprivate}>Participate in the auction</button></Link>
+                        <Link to={`/products`}><button className={styles.thing_card_noprivate}>Participate in the auction</button></Link>
                       )}
                     </div>
                   </div>

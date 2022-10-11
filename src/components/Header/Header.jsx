@@ -58,7 +58,7 @@ const Header = React.memo(() => {
             <ul className={styled.dropMenu}>
                 DISCOVER
                 <div className={styled.dropContent}>
-                <div onClick={()=> {navigate('/about')}}>About</div>
+                <div onClick={()=> {navigate('/about')}}>About Us</div>
                 <div>Our</div>
                 <div>Locations</div>
                 <div>Events Calendar</div>
@@ -68,10 +68,10 @@ const Header = React.memo(() => {
             <ul className={styled.dropMenu}>
                 {token ? 
                 <>
-                {id == "63441d5acc170ad61fe4de99" ?    <>
+                {id === "63441d5acc170ad61fe4de99" ?    <>
                 ADMIN ACCOUNT
                 <div className={styled.dropContent}>
-                <div ><a href="http://localhost:3030/admin">Admin Account</a></div>
+                <div ><a href="http://localhost:3030/admin/resources/User">Admin Account</a></div>
                 <div onClick={() => handleLogOut()} > Log Out</div>
                 </div>
                 </> :    <>

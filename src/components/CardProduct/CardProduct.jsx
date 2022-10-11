@@ -24,7 +24,7 @@ const CardProduct = React.memo(({ item }) => {
   const [tokenError, setTokenError] = useState(false)
 
   useEffect(()=> {
-    if(item.private && item.members.length >= 1) {
+    if(item.private && item.members.length >= 2) {
     setMembersError(true)
   } 
     else {
@@ -34,14 +34,14 @@ const CardProduct = React.memo(({ item }) => {
 
   const handleAuctionAccess = (id) => {
 
-    // if(!token) {
-    //   setTokenError(true)
-    //   return
-    // }
-    // if (timerStart === false) {
-    //   setDateError(true)
-    //   return
-    // } 
+    if(!token) {
+      setTokenError(true)
+      return
+    }
+    if (timerStart === false) {
+      setDateError(true)
+      return
+    } 
       dispatch(addUserLikeAuictionMember({id, userId}))
       navigate(`/oneAuction/${id}`)
       setDateError(false)
@@ -72,7 +72,7 @@ const CardProduct = React.memo(({ item }) => {
         </div>
 
         <div className={styles.thing_card_date}>
-        {item.private ? <p> Places: {item.members.length}/1</p>: null}
+        {item.private ? <p> Places: {item.members.length}/2</p>: null}
           <p style={{color: 'goldenrod'}}>Auction started at: {item.auctionStart.split(',')[0]} в {item.auctionStart.split(',')[1].substr(0,3)}:{item.auctionStart.split(',')[1].substr(3,5)}</p>
           <p style={{color: 'goldenrod'}}>Published 10.10.2022</p>
         </div>

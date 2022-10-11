@@ -18,19 +18,18 @@ const OneAuction = () => {
     const [err, setErr] = useState(false);
     const products = useSelector(state => state.product.product);
     const [priceStart, setPriceStart] = useState('');
-
     const [dateNow, setDateNow] = useState(new Date().toLocaleString());
     const [activeWinner, setActiveWinner] = useState(false);
     const [timerStart, setTimerStart] = useState(false)
+
     const handle = (id, priceStart, bet) => {
+        
         products.map((product) => {
-            if (priceStart.trim().length && priceStart > product.priceStart) {
+            if (priceStart.trim().length && priceStart > product.priceStart && id === product._id) {
                 socket.emit("disp_pat", { id, priceStart });
                 setPriceStart('');
                 socket.emit("disp_us", { id, bet });
-                setErr(false);
-                return
-            }
+            } 
             setErr(true);
         });
     }
@@ -69,9 +68,9 @@ const OneAuction = () => {
             })}
             <div className={style.inputer}>
                 <input type='number' placeholder='Введите сумму' value={priceStart} onChange={(e) => setPriceStart(e.target.value)} />
-                <button onClick={() => {handle(id, priceStart, bet)}}>Сделать ставку</button>
+                <button onFocus={()=>{setErr(false)}} onClick={() => {handle(id, priceStart, bet)}}>Сделать ставку</button>
             </div>
-            {err ? 'Нужна ставка выше предыдущей' : null}
+            {err ? <p>Нужна ставка выше предыдущей</p> : null}
         </div>
         <Footer/>
     </>
