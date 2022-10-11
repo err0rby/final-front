@@ -38,6 +38,10 @@
     text-decoration: 3px underline #daa520;
   }
 
+  .things_head_ul ul a:focus {
+    text-decoration: 3px underline #daa520!important;
+  }
+
   .loader_content {
     height: 90vh;
     display: flex;

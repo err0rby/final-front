@@ -15,6 +15,7 @@ const Timer = React.memo(({ dateNow, setDateNow, setTimerStart, item, setActiveW
 
     // console.log(timeRightNow, 'реальное время')
     // console.log(auctionStart, 'начало аукциона')
+    // console.log(item.auctionEnd, 'конец аукциона')
 
 
     const { seconds, minutes, hours, days, start, isRunning } = useTimer({

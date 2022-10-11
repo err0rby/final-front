@@ -29,6 +29,7 @@ const Products = React.memo(() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchProduct());
     dispatch(fetchCategory());
   }, [dispatch]);

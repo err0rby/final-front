@@ -6,4 +6,29 @@
     justify-content: center;
     flex-direction: column;
     z-index: 10000;
+    font-family: 'Cormorant', serif;
+    text-align: center;
+
+}
+
+.container h1 {
+    font-size: 65px;
+}
+
+.container h2{
+    font-size: 50px;
+    color: brown;
+    cursor: pointer;
+}
+
+.message h2 {
+    cursor: pointer;
+    color: brown;
+    transition: all 0.2s ease-out;
+}
+
+.message h2:hover {
+    cursor: pointer;
+    color: goldenrod;
+    text-decoration: 3px solid underline brown;
 }

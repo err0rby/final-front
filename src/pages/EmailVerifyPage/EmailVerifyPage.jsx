@@ -19,11 +19,9 @@ const EmailVerifyPage = () => {
     try {
         const url = `http://localhost:3030/user/${params.id}/verify/${params.token}`
         const {data} = await axios.get(url)
-        console.log(data)
         setMsg(data)
         setValidUrl(true)
     } catch (error) {
-        console.log(error)
         setValidUrl(false)
     }
 }
@@ -35,9 +33,9 @@ const EmailVerifyPage = () => {
   return (
     <div className={styles.container}>
       {validUrl ? (
-        <div onClick={() => handleNavigate()}>{msg.message}</div>
+        <div className={styles.message} onClick={() => handleNavigate()}><h2>{msg.message}</h2></div>
       ) : (
-        <h1>404 NOT FOUND</h1>
+        <div><h1>404 <h2>NOT FOUND</h2></h1></div>
       )}
     </div>
   );

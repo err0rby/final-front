@@ -7,7 +7,7 @@ const Winner = ({activeWinner, setActiveWinner, product}) => {
     const navigate = useNavigate()
 
     const handlePersonalAccount = () => {
-        navigate("/")
+        navigate("/profile")
     }
     const id = useSelector(state => state.application.id)
     return (
@@ -21,8 +21,8 @@ const Winner = ({activeWinner, setActiveWinner, product}) => {
             <div className={styles.title}><p>Auction <b>"{product.name}"</b> &nbsp; has been ended</p></div>
 
             <div className={styles.textAndImg}>
-                <p>Winner: <b>{product.bet.firstName} {product.bet.lastName}</b></p>
-                <p>Winner Bet: <b>{product.priceStart}$</b></p>
+                {product.bet === null ? null : <p>Winner: <b>{product.bet.firstName} {product.bet.lastName}</b></p>}
+                {product.bet === null ? null : <p>Winner Bet: <b>{product.priceStart}$</b></p>}
                 <img src='https://www.pngmart.com/files/8/Auction-PNG-Transparent-Photo.png' alt='auction'/>
             </div>
             {product.bet._id === id ? 
