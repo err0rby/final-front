@@ -15,17 +15,24 @@ const OneAuction = () => {
     const bet = useSelector(state => state.application.id);
     const dispatch = useDispatch();
     const { id } = useParams();
+    const [err, setErr] = useState(false);
     const products = useSelector(state => state.product.product);
     const [priceStart, setPriceStart] = useState('');
 
     const [dateNow, setDateNow] = useState(new Date().toLocaleString());
     const [activeWinner, setActiveWinner] = useState(false);
     const [timerStart, setTimerStart] = useState(false)
-
     const handle = (id, priceStart, bet) => {
-        socket.emit("disp_pat", { id, priceStart });
-        socket.emit("disp_us", { id, bet });
-        setPriceStart('');
+        products.map((product) => {
+            if (priceStart.trim().length && priceStart > product.priceStart) {
+                socket.emit("disp_pat", { id, priceStart });
+                setPriceStart('');
+                socket.emit("disp_us", { id, bet });
+                setErr(false);
+                return
+            }
+            setErr(true);
+        });
     }
 
     useEffect(() => {
@@ -64,6 +71,7 @@ const OneAuction = () => {
                 <input type='number' placeholder='Введите сумму' value={priceStart} onChange={(e) => setPriceStart(e.target.value)} />
                 <button onClick={() => {handle(id, priceStart, bet)}}>Сделать ставку</button>
             </div>
+            {err ? 'Нужна ставка выше предыдущей' : null}
         </div>
         <Footer/>
     </>
