@@ -12,6 +12,7 @@
     font-size: 18px;
 }
 img{
+    margin-top: 2.5rem;
     width: 100%;
 } 
 .conteiner{
@@ -82,10 +83,12 @@ img{
 }
 .btn{
     font-size: 16px;
-    padding: 16px 24px;
+    padding: 12px 34px;
     background-color: #585c5b;
     color: #ffffff;
     border-color: #585c5b;
+    border: none;
+    border-radius: 2px;
 }
 .block h6 {
     font-size: 12px;

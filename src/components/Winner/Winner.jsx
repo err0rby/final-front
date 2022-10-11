@@ -10,6 +10,7 @@ const Winner = ({activeWinner, setActiveWinner, product}) => {
         navigate("/profile")
     }
     const id = useSelector(state => state.application.id)
+    
     return (
         <div
         className={activeWinner ? styles.nomodal : styles.modal}
@@ -25,11 +26,11 @@ const Winner = ({activeWinner, setActiveWinner, product}) => {
                 {product.bet === null ? null : <p>Winner Bet: <b>{product.priceStart}$</b></p>}
                 <img src='https://www.pngmart.com/files/8/Auction-PNG-Transparent-Photo.png' alt='auction'/>
             </div>
-            {product.bet._id === id ? 
+            {product.bet === null ? null : <> {product.bet._id === id ? 
             <div className={styles.personalAccount} onClick={()=>handlePersonalAccount()}><h4>Pay for the order</h4></div>
             : 
             <div className={styles.personalAccount} onClick={()=>navigate('/products')}><h4>Back</h4></div>
-            }
+            }</>}
         </div>
       </div>
     );

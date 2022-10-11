@@ -80,6 +80,7 @@ const OneAuction = React.memo(() => {
             </div>
             <Footer />
         </>
+
     );
 });
 
