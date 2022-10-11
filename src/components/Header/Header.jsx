@@ -18,6 +18,7 @@ const Header = React.memo(() => {
         window.location.href = "/"
     }
 
+    
     return (
         <>
         <div className={styled.head}>
