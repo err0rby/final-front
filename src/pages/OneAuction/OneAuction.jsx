@@ -6,6 +6,8 @@ import style from './oneauction.module.css';
 import io from 'socket.io-client';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Winner from '../../components/Winner/Winner';
+import Timer from '../../components/Timer/Timer';
 const socket = io.connect("http://localhost:3030");
 
 const OneAuction = () => {
@@ -13,12 +15,24 @@ const OneAuction = () => {
     const bet = useSelector(state => state.application.id);
     const dispatch = useDispatch();
     const { id } = useParams();
+    const [err, setErr] = useState(false);
     const products = useSelector(state => state.product.product);
     const [priceStart, setPriceStart] = useState('');
+
+    const [dateNow, setDateNow] = useState(new Date().toLocaleString());
+    const [activeWinner, setActiveWinner] = useState(false);
+    const [timerStart, setTimerStart] = useState(false)
     const handle = (id, priceStart, bet) => {
-        socket.emit("disp_pat", { id, priceStart });
-        socket.emit("disp_us", { id, bet });
-        setPriceStart('');
+        products.map((product) => {
+            if (priceStart.trim().length && priceStart > product.priceStart) {
+                socket.emit("disp_pat", { id, priceStart });
+                setPriceStart('');
+                socket.emit("disp_us", { id, bet });
+                setErr(false);
+                return
+            }
+            setErr(true);
+        });
     }
 
     useEffect(() => {
@@ -33,7 +47,8 @@ const OneAuction = () => {
         dispatch(fetchProduct());
     }, [dispatch]);
 
-    return (<>
+    return (
+    <>
         <Header />
         <div className={style.main}>
             {products.map((product) => {
@@ -45,17 +60,20 @@ const OneAuction = () => {
                             <div className={style.oneDes}>{product.description}</div>
                         </div>
                         <div className={style.onePrice}><h4>Ставка: {product.priceStart}$</h4></div>
-                        <div className={style.oneWin}>{product.bet === null ? 'Нет ни одной ставки' : `Последнюю ставку сделал: ${product.bet.firstName}`}</div>
+                        <div className={style.oneWin}>{product.bet === null ? 'Нет ни одной ставки' : `Последнюю ставку сделал: ${product.bet.firstName} ${product.bet.lastName}`}</div>
+                        <Timer item={product} dateNow={dateNow} setDateNow={setDateNow} setTimerStart={setTimerStart} setActiveWinner={setActiveWinner}/>
+                        <Winner activeWinner={activeWinner} product={product} setActiveWinner={setActiveWinner}/>
                     </div>
                 }
                 return null;
             })}
             <div className={style.inputer}>
                 <input type='number' placeholder='Введите сумму' value={priceStart} onChange={(e) => setPriceStart(e.target.value)} />
-                <button onClick={() => { handle(id, priceStart, bet) }}>Сделать ставку</button>
+                <button onClick={() => {handle(id, priceStart, bet)}}>Сделать ставку</button>
             </div>
+            {err ? 'Нужна ставка выше предыдущей' : null}
         </div>
-        <Footer />
+        <Footer/>
     </>
     );
 };

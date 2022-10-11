@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 import OneAuction from "./pages/OneAuction/OneAuction";
 import Products from "./pages/Products/Products";
 import About from "./components/About/Abot"
+import OneAuction from "./pages/OneAuction/OneAuction";
+import Products from "./pages/Products/Products";
+import Alphabet from "./pages/Alphabet/Alphabet";
+import UserProfile from "./pages/userProfile/userProfile";
+
 
 function App() {
   
@@ -23,6 +28,12 @@ function App() {
         <Route path='/about' element={<About />} />
       </Routes> 
  
+      <Routes>
+        <Route path="/alphabet" element={<Alphabet />} />
+        <Route path="/alphabet/:id" element={<OneAlphabetPage />} />
+        <Route path="/profile" element={<UserProfile />} />
+      </Routes>
+
     </>
   );
 }
