@@ -1,22 +1,56 @@
-import React from 'react';
-import styles from './oneAlphabetPage.module.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import AlphabetCard from "../../components/AlphabetCard/AlphabetCard";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import { fetchCategory } from "../../features/categorySlice";
+import { fetchProduct } from "../../features/productSlice";
+import styles from "./oneAlphabetPage.module.css";
 
 const OneAlphabetPage = () => {
-    return (
-        <div className={styles.container}>
-            <div className={styles.imageField}>
-                <h1>1213</h1>
-                <img src='' alt='123'/>
-            </div>
-            <div  className={styles.textField}>
-                <h1>category.name</h1>
-                <p> category.description </p>
-            </div> 
-            <div className={styles.contentField}>
+  const dispatch = useDispatch();
 
+  const { id } = useParams();
+  useEffect(() => {
+    dispatch(fetchCategory());
+    dispatch(fetchProduct())
+  }, []);
+
+  const category = useSelector((state) =>
+    state.category.category.filter((one) => one._id === id)
+  );
+  const product = useSelector((state) =>state.product.product.filter((one) => one.category === id));
+
+
+  return (
+    <>
+    <Header/>
+    <div className={styles.container}>
+      {category.map((item) => {
+        return (
+          <div key={item._id} className={styles.categoryField}>
+            <div className={styles.imageField}>
+              <img src={item.image} alt="123" />
             </div>
-        </div>
-    );
+            <div className={styles.textField}>
+              <h1>{item.title}</h1>
+              <p> {item.description} </p>
+            </div>
+          </div>
+        );
+      })}
+
+      <div className={styles.contentField}>
+      {product.map((item) => {
+        return <AlphabetCard key={item._id} item={item}/>
+      })}
+
+      </div>
+    </div>
+    <Footer/>
+    </>
+  );
 };
 
 export default OneAlphabetPage;

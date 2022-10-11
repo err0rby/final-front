@@ -1,9 +1,24 @@
 .alphabet_page {
     width: 100%;
+    
+}
+
+.alphabet_page p {
+    font-family: 'Cormorant', serif;
+    font-size: 21px;
+    color: gray;
+    cursor: pointer;
+    margin: 0;
+}
+
+.alphabet_page p:hover{
+    color: brown;
+    
 }
 
 .alphabet_title h4 {
-    font-size: 30px;
+    font-family: 'Cormorant', serif;
+    font-size: 45px;
     padding: 30px 0;
     width: 65%;
     margin: auto;
@@ -26,12 +41,6 @@
     font-size: 20px;
 }
 
-.alphabet_1column p,
-.alphabet_2column p,
-.alphabet_3column p {
-    font-size: 15px;
-    color: gray;
-}
 
 .alphabet_1column_09,
 .alphabet_1column_AC,
