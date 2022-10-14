@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   token: localStorage.getItem("token"),
   id: localStorage.getItem("id"),
+  message: null,
 };
 
 export const signInThunk = createAsyncThunk(
@@ -18,13 +19,8 @@ export const signInThunk = createAsyncThunk(
         },
         body: JSON.stringify({ email, password }),
       });
-      const token = await res.json();
-      if (token.error) {
-        return thunkAPI.rejectWithValue(token.error);
-      }
-      localStorage.setItem("token", token.token);
-      localStorage.setItem("id", token.id);
 
+      const token = await res.json();
       return token;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -33,27 +29,32 @@ export const signInThunk = createAsyncThunk(
 );
 
 const applicationSlice = createSlice({
-    name: "application",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      builder
-        .addCase(signInThunk.pending, (state, action) => {
-          state.loading = true;
-        })
-        .addCase(signInThunk.rejected, (state, action) => {
-          state.error = action.payload
-          state.loading = false
-        })
-        .addCase(signInThunk.fulfilled, (state, action) => {
-          state.loading = false;
-          state.error = null
-          state.token = action.payload.token;
-          state.id = action.payload.id;
-        });
-    },
-  });
+  name: "application",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(signInThunk.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(signInThunk.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+      .addCase(signInThunk.fulfilled, (state, action) => {
 
-  export default applicationSlice.reducer;
+        if (action.payload.message === undefined) {
+          localStorage.setItem("token", action.payload.token);
+          localStorage.setItem("id", action.payload.id);
+        }
+        
+        state.loading = false;
+        state.error = null;
+        state.token = action.payload.token;
+        state.id = action.payload.id;
+        state.message = action.payload.message;
+      });
+  },
+});
 
-  
+export default applicationSlice.reducer;

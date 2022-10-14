@@ -34,14 +34,14 @@ const CardProduct = React.memo(({ item }) => {
 
   const handleAuctionAccess = (id) => {
 
-    if(!token) {
-      setTokenError(true)
-      return
-    }
-    if (timerStart === false) {
-      setDateError(true)
-      return
-    } 
+    // if(!token) {
+    //   setTokenError(true)
+    //   return
+    // }
+    // if (timerStart === false) {
+    //   setDateError(true)
+    //   return
+    // } 
       dispatch(addUserLikeAuictionMember({id, userId}))
       navigate(`/oneAuction/${id}`)
       setDateError(false)

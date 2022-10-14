@@ -22,6 +22,8 @@ const OneAuction = React.memo(() => {
     const [activeWinner, setActiveWinner] = useState(false);
     const [timerStart, setTimerStart] = useState(false);
     const final = products.find((product) => id === product._id);
+
+    console.log(final)
     const handle = (id, priceStart, bet) => {
         if (priceStart.trim().length && priceStart > final.priceStart) {
             socket.emit("disp_pat", { id, priceStart });
@@ -49,7 +51,10 @@ const OneAuction = React.memo(() => {
         });
 
         dispatch(fetchProduct());
+
     }, [dispatch]);
+
+
 
     return (
         <>
@@ -65,7 +70,7 @@ const OneAuction = React.memo(() => {
                                     <Timer item={product} dateNow={dateNow} setDateNow={setDateNow} setTimerStart={setTimerStart} setActiveWinner={setActiveWinner} />
                                     <Winner activeWinner={activeWinner} product={product} setActiveWinner={setActiveWinner} />
                                     <div className={style.inputer}>
-                                        <div className={style.oneWin}>{product.bet === null ? 'Нет ни одной ставки' : `Последнюю ставку сделал: ${product.bet.firstName} ${product.bet.lastName}`}</div>
+                                        <div className={style.oneWin}>{ product.bet === null ? 'Нет ни одной ставки' : `Последнюю ставку сделал: ${product.bet.firstName} ${product.bet.lastName}`}</div>
                                         <input type='number' placeholder='Введите сумму' value={priceStart} onChange={(e) => handleVal(e)} />
                                         <button onClick={() => { handle(id, priceStart, bet) }}>Сделать ставку</button>
                                     </div>

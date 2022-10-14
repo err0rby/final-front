@@ -76,7 +76,7 @@ const UserProfile = ()  => {
                     <hr />
             {filterProd.map((item) => {
                 return (
-                    <div>
+                    <div key={item._id}>
                     <ul className={styled.infoBids2}>
                         <li className={styled.lisImg}><img src={item.image} alt="#" /><Link to={`/oneAuction/${item._id}`}>{item.name}</Link></li>
                         <li className={styled.lisName}></li>
