@@ -6,7 +6,7 @@ import OneAuction from "./pages/OneAuction/OneAuction";
 import Products from "./pages/Products/Products";
 import Alphabet from "./pages/Alphabet/Alphabet";
 import About from "./pages/About/About";
-import UserProfile from "./pages/UserProfile/UserProfile";
+import UserProfile from "./pages/UserProfile/userProfile";
 
 
 function App() {
