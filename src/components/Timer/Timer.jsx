@@ -36,7 +36,7 @@ const Timer = React.memo(({ dateNow, setDateNow, setTimerStart, item, setActiveW
         setDateNow(new Date().toLocaleString());
       }, 10000); // ДЛЯ УДОБСТВА СДЕЛАЛ 1 СЕКУНДУ, ХОТЯ ДОЛЖЕН БЫТЬ 1 ЧАС, ЧТОБЫ НЕ БЫЛО РЕРЕНДЕРОВ СТРАНИЦЫ РАЗ В СЕКУНДУ!
 
-      if (dateNow.substring(0, 10) === item.auctionStart.split(',')[0] && timeRightNow > Number(item.auctionStart.split(',')[1])) {
+      if (dateNow.substring(0, 10) === item.auctionStart.split(',')[0] && timeRightNow >= Number(item.auctionStart.split(',')[1])) {
         start();
         clearInterval(interval);
         setTimerStart(true);

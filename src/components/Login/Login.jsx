@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signInThunk } from "../../features/applicationSlice";
 import styles from "./login.module.css";
 
@@ -8,9 +8,11 @@ const Login = ({ activeLogin, setActiveLogin }) => {
 
   
   const dispatch = useDispatch()
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const message = useSelector(state => state.application.message)
 
   const [validatorError, setValidatorError] = useState(false);
   const [validatorErrorMessage, setValidatorErrorMessage] = useState("")
@@ -35,10 +37,12 @@ const Login = ({ activeLogin, setActiveLogin }) => {
   const handleAuth = (e, { email, password }) => {
     e.preventDefault();
     if (inputValidator({ email, password })) {
+
       dispatch(signInThunk({email, password}))
       setEmail("")
       setPassword("")
-      setActiveLogin(false)
+      
+      
     }
   };
 
@@ -85,7 +89,7 @@ const Login = ({ activeLogin, setActiveLogin }) => {
         >
           Sign in
         </button>
-
+        {message === undefined ? null : <p>{message}</p> }
         <a href="/">Forgot password?</a>
       </form>
     </div>
