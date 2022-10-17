@@ -96,7 +96,7 @@ const Auth = ({ activeAuth, setActiveAuth }) => {
 
   return (
     <>
-      <ToastContainer limit={1} />
+      <ToastContainer limit={1} style={{zIndex: "10000"}}/>
       <div
         className={activeAuth ? styles.nomodal : styles.modal}
         onClick={() => setActiveAuth(false)}
