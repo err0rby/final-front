@@ -29,6 +29,7 @@
 .textField p {
     margin-left: auto;
     width: 90%;
+    font-size: 20px;
     text-align: start;
     margin-bottom: 5rem;
 }

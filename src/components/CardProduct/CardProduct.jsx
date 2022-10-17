@@ -34,14 +34,14 @@ const CardProduct = React.memo(({ item }) => {
 
   const handleAuctionAccess = (id) => {
 
-    if(!token) {
-      setTokenError(true)
-      return
-    }
-    if (timerStart === false) {
-      setDateError(true)
-      return
-    } 
+    // if(!token) {
+    //   setTokenError(true)
+    //   return
+    // }
+    // if (timerStart === false) {
+    //   setDateError(true)
+    //   return
+    // } 
       dispatch(addUserLikeAuictionMember({id, userId}))
       navigate(`/oneAuction/${id}`)
       setDateError(false)
@@ -51,7 +51,7 @@ const CardProduct = React.memo(({ item }) => {
   return (
     <div className={styles.thing_card}>
       <div className={styles.thing_card_img}>
-        <img src={item.image} alt="" />
+        <img src={`http://localhost:3030/images/${item.image}`} alt="product" />
       </div>
       {item.private === true ?
         <div className={styles.thing_card_time_private}>

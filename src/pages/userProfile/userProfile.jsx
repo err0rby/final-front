@@ -3,7 +3,7 @@ import {IoMdHome} from 'react-icons/io'
 import { useNavigate } from 'react-router-dom';
 import {RiAuctionFill} from 'react-icons/ri'
 import {GoSignOut} from 'react-icons/go'
-import styled from '../userProfile/profile.module.css'
+import styled from './profile.module.css'
 import Header from '../../components/Header/Header';
 import { Link } from 'react-router-dom';
 import {AiTwotoneSetting} from 'react-icons/ai'
@@ -12,7 +12,7 @@ import { fetchProduct } from '../../features/productSlice';
 import { fetchUsers } from '../../features/userSlice';
 
 
-const UserProfile = ()  => {
+const UserProfile = () => {
     const [activ, setActive] = useState(true)
 
    const id = useSelector((state)=> state.application.id)
@@ -52,10 +52,6 @@ const UserProfile = ()  => {
         <h4 className={styled.textMyAuc}>My Auctions</h4>
         <div className={styled.main}>
             <div className={styled.iconsMain}>
-                <div className={styled.userBlock}>
-                    <img src="https://vsegda-pomnim.com/uploads/posts/2022-04/thumbs/1649232757_36-vsegda-pomnim-com-p-pustoe-litso-foto-43.jpg" alt="" />
-                    <span>User Userov</span>
-                </div>
             <div className={styled.allicons}>
                 <span  onClick={handleClick}><RiAuctionFill className={styled.oneIcon}/></span>
                 <span><RiAuctionFill className={styled.oneIcon}/></span>
@@ -78,7 +74,7 @@ const UserProfile = ()  => {
                 return (
                     <div>
                     <ul className={styled.infoBids2}>
-                        <li className={styled.lisImg}><img src={item.image} alt="#" /><Link to={`/oneAuction/${item._id}`}>{item.name}</Link></li>
+                        <li className={styled.lisImg}><img src={`http://localhost:3030/images/${item.image}`}  alt="#" /><Link to={`/oneAuction/${item._id}`}>{item.name}</Link></li>
                         <li className={styled.lisName}></li>
                         <li className={styled.lis2}></li>
                         <li className={styled.lis2}>{item.priceFinal}$</li>
@@ -98,10 +94,6 @@ const UserProfile = ()  => {
         <h4 className={styled.textMyAuc}>My Win Auctions</h4>
         <div className={styled.main}>
             <div className={styled.iconsMain}>
-                <div className={styled.userBlock}>
-                    <img src="https://vsegda-pomnim.com/uploads/posts/2022-04/thumbs/1649232757_36-vsegda-pomnim-com-p-pustoe-litso-foto-43.jpg" alt="" />
-                    <span>User Userov</span>
-                </div>
             <div className={styled.allicons}>
                 <span  onClick={handleClick}><RiAuctionFill className={styled.oneIcon}/></span>
                 <span><RiAuctionFill className={styled.oneIcon}/></span>
@@ -124,7 +116,7 @@ const UserProfile = ()  => {
                 return (
                     <div>
                     <ul className={styled.infoBids2}>
-                        <li className={styled.lisImg}><img src={item.image} alt="#" /><Link to={`/oneAuction/${item._id}`}>{item.name}</Link></li>
+                        <li className={styled.lisImg}><img src={`http://localhost:3030/images/${item.image}`} alt="#" /><Link to={`/oneAuction/${item._id}`}>{item.name}</Link></li>
                         <li className={styled.lisName}></li>
                         <li className={styled.lis2}></li>
                         <li className={styled.lis2}>{item.priceFinal}$</li>

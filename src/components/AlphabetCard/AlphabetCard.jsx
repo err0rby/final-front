@@ -5,7 +5,7 @@ const AlphabetCard = ({ item }) => {
   return (
     <div className={styles.container}>
         <div className={styles.imageField}>
-        <img src={item.image} alt="image" />
+        <img src={`http://localhost:3030/images/${item.image}`} alt="image" />
         </div>
       <div className={styles.textField}>
         <p>{item.name}</p>

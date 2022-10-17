@@ -60,7 +60,7 @@ const OneAuction = React.memo(() => {
                         return <div className={style.oneMain} key={product._id}>
                             <div className={style.oneName}><h2>{product.name}</h2></div>
                             <div className={style.oneDes}>
-                                <div className={style.oneImg}><img alt='asdada' src={`${product.image}`} /></div>
+                                <div className={style.oneImg}><img alt='asdada' src={`http://localhost:3030/images/${product.image}`} /></div>
                                 <div className={style.info}><div className={style.onePrice}><h4>Ставка: {product.priceStart}$</h4></div>
                                     <Timer item={product} dateNow={dateNow} setDateNow={setDateNow} setTimerStart={setTimerStart} setActiveWinner={setActiveWinner} />
                                     <Winner activeWinner={activeWinner} product={product} setActiveWinner={setActiveWinner} />
