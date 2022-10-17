@@ -24,7 +24,7 @@ const Main = React.memo(() => {
             return (
               <div className={styles.thing_card} key={item._id}>
                 <div className={styles.thing_card_img}>
-                  <img src={item.image} alt="" />
+                  <img src={`http://localhost:3030/images/${item.image}`} alt="" />
                 </div>
                 <div className={styles.thing_card_text}>
                   <div className={styles.thing_card_name}>

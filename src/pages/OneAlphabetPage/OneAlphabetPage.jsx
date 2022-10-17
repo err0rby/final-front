@@ -32,11 +32,11 @@ const OneAlphabetPage = () => {
         return (
           <div key={item._id} className={styles.categoryField}>
             <div className={styles.imageField}>
-              <img src={item.image} alt="123" />
+              <img src={`http://localhost:3030/images/${item.image}`} alt="123" />
             </div>
             <div className={styles.textField}>
               <h1>{item.title}</h1>
-              <p> {item.description} </p>
+              <p>{item.description}</p>
             </div>
           </div>
         );
