@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Timer from "../../components/Timer/Timer";
 import { addUserLikeAuictionMember } from "../../features/productSlice";
+import { serverUrl } from "../../serverUrl";
 
 import styles from "./cardProduct.module.css";
 
@@ -51,7 +52,7 @@ const CardProduct = React.memo(({ item }) => {
   return (
     <div className={styles.thing_card}>
       <div className={styles.thing_card_img}>
-        <img src={`http://localhost:3030/images/${item.image}`} alt="product" />
+        <img src={`${serverUrl}/images/${item.image}`} alt="product" />
       </div>
       {item.private === true ?
         <div className={styles.thing_card_time_private}>

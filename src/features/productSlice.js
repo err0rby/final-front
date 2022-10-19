@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { serverUrl } from "../serverUrl";
 
 const initialState = {
   product: [],
@@ -9,7 +10,7 @@ export const fetchProduct = createAsyncThunk(
   "fetch/product",
   async (_, thunkAPI) => {
     try {
-      const res = await fetch("http://localhost:3030/Product");
+      const res = await fetch(`${serverUrl}/Product`);
       const data = await res.json();
       return data;
     } catch (error) {
@@ -20,7 +21,7 @@ export const fetchProduct = createAsyncThunk(
 
 export const patchProd = createAsyncThunk('patch/product', async ({ id, priceStart }, thunkAPI) => {
   try {
-    await fetch(`http://localhost:3030/Product/pat/${id}`, {
+    await fetch(`${serverUrl}/Product/pat/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json'
@@ -35,7 +36,7 @@ export const patchProd = createAsyncThunk('patch/product', async ({ id, priceSta
 
 export const addUserLikeAuictionMember = createAsyncThunk('patch/addUserLikeMember', async ({id, userId}, thunkAPI) => {
   try {
-    const res = await fetch(`http://localhost:3030/Product/members/${id}`, {
+    const res = await fetch(`${serverUrl}/Product/members/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json'
@@ -52,7 +53,7 @@ export const addUserLikeAuictionMember = createAsyncThunk('patch/addUserLikeMemb
 
 export const addProductForWinnerUser = createAsyncThunk('patch/addProductForWinnerUser', async ({id, productId}, thunkAPI) => {
     try {
-     const res = await fetch(`http://localhost:3030/user/buy/${id}`, {
+     const res = await fetch(`${serverUrl}/user/buy/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json'
@@ -69,7 +70,7 @@ export const addProductForWinnerUser = createAsyncThunk('patch/addProductForWinn
 
 export const patchUser = createAsyncThunk('patch/user', async ({ id, bet }, thunkAPI) => {
   try {
-    const res = await fetch(`http://localhost:3030/Product/arr/${id}`, {
+    const res = await fetch(`${serverUrl}/Product/arr/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json'
