@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/Footer';
 import Winner from '../../components/Winner/Winner';
 import Timer from '../../components/Timer/Timer';
 import { serverUrl } from '../../serverUrl';
-const socket = io.connect("http://localhost:3030");
+const socket = io.connect(`${serverUrl}`);
 
 const OneAuction = React.memo(() => {
 
