@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { fetchCategory } from "../../features/categorySlice";
 import { fetchProduct } from "../../features/productSlice";
+import { serverUrl } from "../../serverUrl";
 import styles from "./oneAlphabetPage.module.css";
 
 const OneAlphabetPage = () => {
@@ -32,7 +33,7 @@ const OneAlphabetPage = () => {
         return (
           <div key={item._id} className={styles.categoryField}>
             <div className={styles.imageField}>
-              <img src={`http://localhost:3030/images/${item.image}`} alt="123" />
+              <img src={`${serverUrl}/images/${item.image}`} alt="123" />
             </div>
             <div className={styles.textField}>
               <h1>{item.title}</h1>
